@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ 'fichier/css/bootstrap.min.css' }}" rel="stylesheet" >
+    <link href= "{{ 'fichier/css/boutique.css' }}" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -33,21 +34,29 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">la boutique des Îles </a>
+        <a class="navbar-brand" href="{{ path('home') }}">la boutique des Îles </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#"> qui sommes nous?</a>
+                </li>
+                 <li class="nav-item active">
+                    <a class="nav-link" href="#"> nos produis</a>
+                </li>
+                 <li class="nav-item active">
+                    <a class="nav-link" href="#"> Contacts</a>
                 </li>
             </ul>
-            {% if( app.user ) %}
-            <a href=" {{  path('compte') }} "> Mon compte </a> |  <a href=" {{  path('app_logout') }} "> déconnexion </a>
-            {% else %}
-             <a href=" {{  path('app_login') }} "> Connexion </a> |  <a href=" {{  path('register') }} "> Inscription </a>
-            {% endif  %}
+            <div class ="navbar-item-custom"> 
+                {% if( app.user ) %}
+                     <a href=" {{  path('compte') }} "> Mon compte <small>({{ app.user.firstname}})</small></a> |  <a href=" {{  path('app_logout') }} "> déconnexion </a>
+                {% else %}
+                     <a href=" {{  path('app_login') }} "> Connexion </a> |  <a href=" {{  path('register') }} "> Inscription </a>
+                {% endif  %}
+            </di> 
         </div>
     </nav>
 </header>
@@ -118,9 +127,13 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; katib, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <footer class="footer-custom">
+        <p>
+            &copy; La boutique des Îles . <br>
+           <small> La boutique cent pour cent Bio <br>
+                 <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+            </small>
+        </p>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

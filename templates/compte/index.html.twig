@@ -4,6 +4,9 @@
 
 {% block content %}
 <h3>  mon comte </h3>
-bienvenue <b> {{ app.user.firstname }}  </b> <b>{{ app.user.lastname }}</b> dans votre espace personnel  
+bienvenue <b> {{ app.user.firstname }}  </b> <b>{{ app.user.lastname }}</b> dans votre espace personnel
+
+<hr>
+<a href="{{ path('compte_password') }}">  modifier mon mot de passe</a>
 
 {% endblock %}
