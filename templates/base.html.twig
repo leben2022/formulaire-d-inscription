@@ -9,8 +9,11 @@
     <title>{% block titre %} la boutique des Îles {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ 'fichier/css/bootstrap.min.css' }}" rel="stylesheet" >
-    <link href= "{{ 'fichier/css/boutique.css' }}" rel="stylesheet">
+    {% block liens %}
+   <link href="{{ asset('fichier/css/bootstrap.min.css') }}" rel="stylesheet" >
+     
+    <link href= "{{ asset('fichier/css/boutique.css') }}" rel="stylesheet">
+    {% endblock %}
 
     <style>
         .bd-placeholder-img {
@@ -29,7 +32,7 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="{{ 'fichier/css/carousel.css' }}" rel="stylesheet">
+    <link href="{{ asset('fichier/css/carousel.css') }}" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -137,6 +140,6 @@
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="{{ 'fichier/js/bootstrap.bundle.js' }}"></script>
+<script src="{{ asset('fichier/js/bootstrap.bundle.js') }}"></script>
 </body>
 </html>
