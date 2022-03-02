@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+  {% block title %} Mon panier  la boutique des Îles {% endblock %}
+
+{% block content %}
+  <h1> Mon panier   <h1>
+    
+  {% if((cart|length) > 0) %}  
+   <h6> Retrouver l'ensemble des produits que vous avez ajouté </h6>
+    <table class="table mt-3" >
+      <thead>
+        <tr>
+          <th scope="col">Produits</th>
+          <th scope="col"></th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Total</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% set total = null %}
+      {% for product in cart %}
+        <tr>
+          <th scope="row">
+                <img src= " /uploads/{{ product.product.illustration}} " alt="{{ product.product.name }}" height ="75px"> <br> 
+          </th>
+          <td class="td"> 
+            {{ product.product.name }} <br>
+            <small>  {{ product.product.subtitle }}  </small>
+          </td>
+          <td>
+            <a href="{{ path('decrease_my_cart',  {'id': product.product.id } ) }}">
+              <img src="{{ asset('fichier/img/moins.png') }}" alt ="retirer une quantité" height="22px" > 
+            </a> 
+               X {{ product.quantity }} 
+             <a href="{{ path('add_to_cart', {'id': product.product.id } ) }}">
+              <img src="{{ asset('fichier/img/plus.png') }}" alt ="ajouter une quantité" height="22px" > 
+            </a> 
+          </td>
+          <td> {{ (product.product.price /100) | number_format( 2, ',', '.') }} €</td>
+          <td>{{ ( (product.product.price)*(product.quantity) /100) | number_format( 2, ',', '.') }} €</td>
+          <td> 
+            <a href="{{ path('delete_my_cart', {'id': product.product.id } ) }}">
+              <img src="{{ asset('fichier/img/poubelle.png') }}" alt ="supprimer mon produit" height="22px" > 
+            </a> 
+          </td>
+        </tr>
+        {% set total = total + (product.product.price)*(product.quantity) %}
+      {%  endfor %}
+      </tbody>
+    </table>
+
+    <div class="text-right mb-5">
+        <b> Nombre de produit: </b> {{ cart|length }}<br>    
+        <b> Total de mon panier :</b> {{ (total /100) | number_format( 2, ',', '.') }} €
+        <a href="" class="btn btn-success btn-block mt-3"> Valider mon panier </a>
+
+    </div>
+  {% else %}
+  <div class="panier_vide">
+    <hr>
+    <b > votre panier est videz </b>
+ </div>
+  {% endif %}
+{% endblock %}
+
